@@ -192,13 +192,17 @@ class Player {
   walkRight() {
     this.sprite.changeAni('walkHorizontal');
     this.sprite.mirror.x = false;
-    this.sprite.vel.x = this.speed;
+    this.sprite.direction = 0;
+    this.sprite.speed = this.speed;
+    this.sprite.y++;
   } 
   
   walkLeft() {
     this.sprite.changeAni('walkHorizontal');
     this.sprite.mirror.x = true;
-    this.sprite.vel.x = -this.speed;
+    this.sprite.direction = 180;
+    this.sprite.speed = this.speed;
+    this.sprite.y++;
   }
   
   jump() {
@@ -308,7 +312,8 @@ class Game {
         let msTime = Date.now() - this.startTime;
         this.totalTime = Math.floor(msTime / 1000);
         textSize(30);
-        text(this.totalTime , 20, 40);
+        fill('white');
+        text(`Time: ${this.totalTime}`, 20, 40);
 
         this.currentFrame++;
         // Every 120 frames (2 seconds at 60 fps), spawn new enemy
